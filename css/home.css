@@ -1,0 +1,31 @@
+*{margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;}
+    
+    header{
+        border-bottom: 1px solid #033F63 ;
+        
+        
+    }
+    
+    a{text-decoration: none;}
+    ul{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin:10px;
+        
+    }
+    
+    li img{
+        width:40px;
+        
+    }
+    
+    li{text-decoration: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    color:#033F63;
+    font-weight: 500;}

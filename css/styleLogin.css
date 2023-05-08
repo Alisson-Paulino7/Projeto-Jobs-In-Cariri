@@ -1,0 +1,92 @@
+*{
+   
+    padding:0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: Roboto;
+    
+}
+body{
+    
+  background: linear-gradient(-20deg, #ffffff, #00A6ED 80%);
+  background-size: cover;
+  
+  background-attachment: fixed;
+  background-position: center;
+  
+
+  }
+  
+
+form{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+background-color: #003D64;
+width:450px;
+padding:20px;
+border-radius: 10px;
+border:2px solid #ffffff;
+
+    
+    
+}
+
+form input{
+    width:300px;
+    height:40px;
+    margin:10px;
+    border-radius: 10px;
+    border:none;
+    outline: none;
+    padding-left: 5px;
+}
+form input[type="submit"]{
+background-color: #FFA500;
+color: white;
+font-size:16px;
+font-weight: 500;
+}
+.logo{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin:10px auto;
+    
+
+}
+
+form h1{margin:10px;
+color: white;}
+form p{color:white;}
+
+.logo img{width:120px;
+height:120px;}
+
+.logo p{
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+
+}
+
+main{display:flex;
+flex-direction: column;
+align-items:center;
+justify-content: center; 
+
+}
+
+.cadastro-login{
+    margin:15px auto;
+    font-weight: 500;
+    color:white;
+}
+
+.cadastro-login a{
+    text-decoration: none;
+    color:#003D64;
+}
+
