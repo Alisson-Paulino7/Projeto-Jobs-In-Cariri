@@ -23,12 +23,12 @@
         <div class="dropdown">
   <li class="dropdown-btn">Perfil</li>
   <ul class="dropdown-menu">
-  <a href="#"><li>Editar perfil</li></a>
-  <a href="#"> <li>Ranking</li></a>
+  <a href="../authenticated/perfil.php"><li>Editar perfil</li></a>
+  <a href="../authenticated/ranking.php"> <li>Ranking</li></a>
   <a href="../authenticated/editarPerfil.php"> <li>Profissão</li></a>
   <a href="#"><li>Contratos</li></a>
   <a href="#"> <li>Chat</li></a>
-  <a href="#"> <li>Pagamentos</li></a>
+  <a href="../authenticated/pagamento.php"> <li>Pagamentos</li></a>
   <a href="..\login.php"><li>Sair</li></a>
   </ul>
 </div>
@@ -92,54 +92,63 @@ if ($result->num_rows > 0) {
 <section>
 <h1>Ultimas vagas</h1>
 <?php
-
-
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "jobs";
 
-
 $conn = new mysqli($servername, $username, $password, $dbname);
-
 
 if ($conn->connect_error) {
     die("Falha na conexão: " . $conn->connect_error);
 }
+session_start();
 
 
-$sql = "SELECT * FROM vagas ORDER BY data_cadastro DESC";
+if (!isset($_SESSION['user_id'])) {
+    
+    header("Location: login.php"); 
+    exit();
+}
 
 
+$idUsuario = $_SESSION['user_id'];
+
+$sql = "SELECT *
+FROM vagas
+WHERE usuario_responsavel != '$idUsuario'
+ORDER BY data_cadastro DESC";
 $result = $conn->query($sql);
 
-
 if ($result->num_rows > 0) {
-  
     $count = 0;
 
-   
     while($row = $result->fetch_assoc()) {
-        
         if ($count >= 5) {
             break;
         }
 
-       
-        echo "<div class='container-vagas'>"."<div class='vagas'>"." Empresa: " . $row["empresa"]."<br>" . " Cargo: " . $row["cargo"]. "<br>"."</div>"."<div class='candidatar'>"."<p> Candidatar</p>"."</div>"."</div>";
+        echo "<div class='container-vagas'>";
+        echo "<div class='vagas'>";
+        echo "Empresa: " . $row["empresa"] . "<br>";
+        echo "Cargo: " . $row["cargo"] . "<br>";
+        echo "</div>";
+        echo "<div class='candidatar'>";
+        echo "<form method='POST' action='vinculaUsuarioPagamento.php'>";
+        echo "<input type='hidden' name='id_cadastro' value='$idUsuario'>";
+        echo "<input type='hidden' name='id_vaga' value='" . $row['id'] . "'>";
+        echo "<input type='submit' value='Candidatar' style='background:transparent; color:#033F63;border:none; cursor:pointer; font-size:15px'>";
+        echo "</form>";
+        echo "</div>";
+        echo "</div>";
 
-        
         $count++;
     }
 } else {
     echo "<div class='not-jobs'>Nenhuma vaga encontrada.</div>";
 }
 
-
-
 $conn->close();
-
-
 ?>
 </section>
 

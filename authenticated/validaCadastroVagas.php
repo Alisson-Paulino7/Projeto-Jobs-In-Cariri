@@ -55,7 +55,17 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Falha na conexão: " . $conn->connect_error);
 }
+session_start();
 
+// Verificar se o usuário está autenticado
+if (!isset($_SESSION['user_id'])) {
+    // Redirecionar para a página de login ou exibir uma mensagem de erro
+    header("Location: login.php"); // Substitua "login.php" pela página de login do seu sistema
+    exit();
+}
+
+// Obter o ID do usuário logado da sessão
+$idUsuario = $_SESSION['user_id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -65,8 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $requisitos = $_POST['requisitos'];
     $beneficios = $_POST['beneficios'];
+    $idUsuario = $_SESSION['user_id'];
 
-    $sql = "INSERT INTO vagas (empresa, cargo, telefone, email, requisitos, beneficios) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO vagas (empresa, cargo, telefone, email, requisitos, beneficios, usuario_responsavel ) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
 
@@ -74,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Falha na preparação da declaração: " . $conn->error);
     }
 
-    $stmt->bind_param("ssssss", $empresa, $cargo, $telefone, $email, $requisitos, $beneficios);
+    $stmt->bind_param("ssssssi", $empresa, $cargo, $telefone, $email, $requisitos, $beneficios, $idUsuario);
 
    
     if ($stmt->execute()) {
