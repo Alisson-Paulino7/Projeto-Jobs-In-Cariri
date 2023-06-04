@@ -81,8 +81,8 @@ $sqlProfissao = "SELECT  nome FROM profissao";
 $resultProfissao = mysqli_query($conn, $sqlProfissao);
 ?>
 
-   
-<h2>Lista de Profissionais</h2>
+
+<h2 class="profissional">PROFISSIONAIS ENCONTRADOS</h2>
     <form method="POST" action="">
     <h1>Filtro</h1>
         <select name="cidadeFiltro" id="cidadeFiltro">
@@ -105,7 +105,7 @@ $resultProfissao = mysqli_query($conn, $sqlProfissao);
             ?>
         </select>
 
-        <input type="submit" value="Buscar">
+        <input class="busque" type="submit" value="Buscar">
     </form>
 
     
@@ -125,10 +125,10 @@ $conn->close();
         while ($row = $result->fetch_assoc()) {
             
             echo "<div class='container' style='display:flex;'><div class='profissionais'>";
-            echo "<p> Nome: " . $row['n1'] . "</p>";
-            echo "<p> Profissão: " . $row['n2'] . "</p>";
-            echo "<p>Cidade: " . $row['cidade'] . "</p>";
-            echo "</div><img src='img/{$row['foto']}' style='border-radius: 100%; width:100px; height:100px;'></div>";
+            echo "<p class='nomep'> Nome: " . $row['n1'] . "</p>";
+            echo "<p class='profp'> Profissão: " . $row['n2'] . "</p>";
+            echo "<p class='cidp' >Cidade: " . $row['cidade'] . "</p>";
+            echo "</div><img src='img/{$row['foto']}' class='imgp' style='border-radius: 10px; width:220px; height:200px;'></div>";
             
         }
     } else {

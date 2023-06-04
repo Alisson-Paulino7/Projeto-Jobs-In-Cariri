@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="..\imagens\Logo.svg"/>
@@ -37,8 +37,19 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "<form method='POST' action='' enctype='multipart/form-data'>
             <div class='container-img'>
-                <img src='img/{$row['foto']}' style='border-radius: 100%;' id='preview-img'>
-                <input type='file' name='foto' class='custom-file-input' id='foto' onchange='previewImage();'></div>
+            <div class='estilo'>
+            <div class='alteraft'>
+            <img src='img/{$row['foto']}' style='border-radius: 10px;' id='preview-img'>
+            <input type='file' name='foto' class='custom-file-input' id='foto' onchange='previewImage();'></div>
+            <div class='inf'>
+            <p>Nome</p>
+            <p>email</p>
+            <p>senha</p>
+            <p>cep</p>
+            <p>telefone</p>
+            </div>
+            </div>
+            </div>
             <input type='submit' value='Atualizar cadastro' name='atualizar_cadastro'>
         </form>";
     }
@@ -87,6 +98,51 @@ function previewImage() {
 
 
 <style>
+    .alteraft{
+        display:column;
+        
+    }
+    .alteraft input#foto{
+     padding: 18px;
+     margin-right: 80px;
+    }
+        .inf p{
+            color:black;
+            border: 0px solid;
+            background: whitesmoke;
+            border-radius: 5px;
+            box-shadow: 3px 3px grey;
+            margin-bottom: 10px;
+            margin:20px;
+            padding: 6px;
+            width: 500px;
+        }
+    .inf{
+        margin-top: -50px;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 20px;
+        padding: 10px;
+        
+    }
+    .nome{
+       text-align: center;
+        border: 0px solid ;
+        font-size:20px;
+        font-weight: 400;
+    }
+    .estilo{
+        border: 0px solid;
+        border-radius: 20px;
+        background: rgba(0,0,0,0.3);
+        padding: 10px;
+        padding-right: 50px;
+        padding-left: 30px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        
+    }
     form{display:flex;
     justify-content:center;
     flex-direction:column;
@@ -115,15 +171,18 @@ function previewImage() {
     .container-img{
         display:flex;
         flex-direction:column;
-        align-items:center;
-        justify-content:center;
+        align-items:left;
+        justify-content:left;
 
     }
 
     .container-img img{
-        width:180px;
-        height:180px;
-        border-radius:100%;
+        width:220px;
+        height:220px;
+        border:0px solid;
+       border-radius: 10px;
+       margin-top: 50px;
+       
     }
 
     h1{
@@ -132,10 +191,11 @@ function previewImage() {
   
     .custom-file-input {
   color: #033f63;
-  margin:auto;
   width:190px;
-  margin:30px;
-  margin-left:30px;
+  height: 100px;
+  margin-top: 30px;
+  margin-right: 50px;
+  
 }
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
@@ -146,15 +206,14 @@ function previewImage() {
   border:none;
   background:white;
   border: 1px solid #999;
-  border-radius: 3px;
-  padding: 5px 8px;
+  border-radius: 5px;
+  padding: 15px;
   outline: none;
   color:#033f63;
   white-space: nowrap;
-  -webkit-user-select: none;
   cursor: pointer;
   
-  font-size: 10pt;
+  font-size: 15px;
 }
 .custom-file-input:hover::before {
   border-color: black;
@@ -169,17 +228,19 @@ function previewImage() {
 body {
     font-family:Roboto;
   padding: 20px;
-  background:#033f63;
+  background-image:url(../imagens/fundologin.svg);
+  background-size:cover;
+background-repeat: no-repeat;
 }
 body h1{
     color:white;
 }
 
-<style>
+
     .container-img {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: left;
         margin-bottom: 20px;
     }
 
@@ -226,5 +287,5 @@ body h1{
     }
 
    
-</style>
+
 </style>

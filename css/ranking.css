@@ -1,139 +1,222 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .dropdown {
-position: relative;
-display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown-btn {
 
 
-border: none;
-cursor: pointer;
-padding: 10px 20px;
-font-size: 16px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
 }
 
 .dropdown-menu {
-position: absolute;
-top: 100%;
-left: 0;
-background-color: #033F63;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #033F63;
 
-font-size:10px;
-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-list-style: none;
-padding: 0;
-max-width:88px;
+    font-size: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    padding: 0;
+    max-width: 88px;
 
-display: none;
-z-index: 1;
+    display: none;
+    z-index: 1;
 }
 
 .dropdown-menu li {
-padding: 10px 10px;
-color:#fff;
+    padding: 10px 10px;
+    color: #fff;
 }
 
 .dropdown-menu li:hover {
 
-color:#033F63;
-background-color: #f1f1f1;
+    color: #033F63;
+    background-color: #f1f1f1;
 }
 
-.dropdown-menu li a:hover{
-color:#033F63;
+.dropdown-menu li a:hover {
+    color: #033F63;
 
 }
-a{color:white;}
+
+a {
+    color: white;
+}
+
 .show {
-display: block;
+    display: block;
 }
 
-section{display:flex;
-justify-content: space-between;
-margin:40px;
+section {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px;
 }
 
-form{
-    display:flex;
+form {
+    display: flex;
     align-items: center;
-    width:40%
+    width: 40%
 }
-form select{
-    
+
+form select {
+
     margin-right: 60px;
 }
 
-form h1{
-    margin-right:20px;
+form h1 {
+    margin-right: 20px;
     font-size: 18px;
 }
 
 
-select{
+select {
     padding: 5px;
     border-radius: 5px;
-    border:none;
-    border-radius:20px;
-    width:200px;
-    font-size: 14px;
+    border: none;
+    border-radius: 20px;
+    width: 200px;
+    font-size: 18px;
     font-weight: 600;
-    background-color: #DC7500;
     color: #000000;
-    outline:none;
-    
+    outline: none;
+
 }
 
-option{
-    border:none;
-    background:white;
+
+
+select#cidadeFiltro {
+    background: linear-gradient(to right, orange, yellow);
+    box-shadow: 3px 3px black;
 }
 
-input[type=submit]{
-    background: #DC7500;
-width:100px;
-border-radius:20px;
-border:none;
-padding:5px;
-color:white;
-cursor:pointer;
+select#profissaoFiltro {
+    background: linear-gradient(to right, orange, yellow);
+    box-shadow: 3px 3px black;
 }
-.container{
-    display:flex;
-    border:1px solid black;
-    width:400px;
+
+input.busque {
+    background: linear-gradient(to right, orange, yellow);
+}
+
+option {
+    border: 1px solid;
+    border-radius: 20px;
+    background-color: #ffffff;
+    font-size: 16px;
+    padding: 10px;
+}
+
+input[type=submit] {
+    background: linear-gradient(to right, orange, yellow);
+    box-shadow: 3px 3px black;
+    width: 200px;
+    border-radius: 20px;
+    font-size: 20px;
+    border: none;
+    padding: 5px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    border: 0px solid;
+    box-shadow: 3px 3px rgb(168, 168, 168);
+    width: 580px;
     flex-direction: row-reverse;
-    background-color: white;
-    align-items:center;
-    padding:20px;
-    border-radius:6px;
-    margin:20px;
+    background: rgb(247, 247, 247);
+
+    align-items: center;
+    padding: 40px;
+    border-radius: 20px;
+    margin: 20px;
 }
-.container img{
+
+.container img {
     background-color: #033F63;
+
+
 }
-.profissionais{
+
+.profissionais {
     display: flex;
     flex-direction: column;
-    
-    
-    padding:20px;
-    border-radius:6px;
-    margin:20px;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 6px;
+    font-weight: bold;
 }
 
-.not-results{
-    padding:20px;
-    margin:20px;
+.not-results {
+    padding: 20px;
+    margin: 20px;
 }
 
-.lista-profissionais{
-    display:flex;
-    flex-wrap:wrap;
-    width:900px;
+.lista-profissionais {
+    display: flex;
+    flex-wrap: wrap;
+    width: 900px;
+    
+}
+
+p.nomep {
+    margin-bottom: 20px;
+    border: 1px solid rgb(211, 211, 211);
+    box-shadow: 2px 2px rgb(168, 168, 168);
+    background-color: white;
+    border-radius: 10px;
+    width: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+
+
+}
+
+p.profp {
+    padding-left: 5px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(211, 211, 211);
+    box-shadow: 2px 2px rgb(168, 168, 168);
+    background-color: white;
+    border-radius: 10px;
+    width: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+p.cidp {
+    margin-bottom: 20px;
+    border: 1px solid rgb(211, 211, 211);
+    box-shadow: 2px 2px rgb(168, 168, 168);
+    background-color: white;
+    border-radius: 10px;
+    width: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+.profissional {
+    background-color: white;
+    border: 1px solid rgb(211, 211, 211);
+    box-shadow: 3px 3px rgb(168, 168, 168);
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }

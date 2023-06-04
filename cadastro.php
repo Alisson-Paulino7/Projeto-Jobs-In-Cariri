@@ -11,8 +11,9 @@
 </head>
 <body>
     <div class="imagem-cadastro">
-        <h1>Encontre seu lugar no mundo do trabalho</h1>
-        <h1 class="subtitle">O caminho para o seu sucesso profissional começa aqui!</h1>
+        <h1 style="background-image: url(../imagens/FUNDOCADASTRO.svg);
+    background-repeat: no-repeat;
+    background-size: cover;"></h1>
     </div>
     
 <div class="tab-container">
