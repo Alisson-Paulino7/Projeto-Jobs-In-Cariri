@@ -21,6 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 class Conexao {
+
+    private $conexao;
+
     private $host = 'localhost';
     private $dbname = 'jobs';
     private $usuario = 'root';
@@ -34,6 +37,9 @@ class Conexao {
         } catch (PDOException $e) {
             echo 'Erro na conexão com o banco de dados: ' . $e->getMessage();
         }
+    }
+    public function fecharConexao() {
+        $this->conexao = null;
     }
 }
 
@@ -71,7 +77,7 @@ class Usuario {
         }
     }
  
-    public function listar() {
+/*   public function listar() {
         $sql = "SELECT * FROM cadastro";
         
         $stmt = $this->conexao->prepare($sql);
@@ -85,7 +91,7 @@ class Usuario {
         }
     }
     
-    public function atualizar($id, $nome, $senha, $cpf_cnpj, $contato) {
+    public function atualizar($id, $nome,$email, $senha, $cpf_cnpj, $contato) {
         $sql = "UPDATE cadastrp SET nome = :nome, senha = :senha, cpf_cnpj = :cpf_cnpj WHERE id = :id";
         
         $stmt = $this->conexao->prepare($sql);
@@ -115,7 +121,7 @@ class Usuario {
         } catch (PDOException $e) {
             echo 'Erro ao excluir usuário: ' . $e->getMessage();
         }
-    }
+    }*/
 }
 
 class Validacao {
@@ -151,12 +157,15 @@ $valida = new Validacao($conexao->conectar());
 
 $valida->checkEmail($email, $nome, $sobrenome, $senha, $cpf, $rg, $dtNascimento, $endereco, $cidade, $celular);
 
+$conexao->fecharConexao();
+
     } else {
         echo 'Por favor, preencha todos os campos do formulário.';
     } 
 } else {
     echo 'O formulário não foi enviado.';
 }
+
 
 
 ?>

@@ -20,20 +20,21 @@ body {
 }
 
 .imagem-cadastro {
-  
     background-image: url(../imagens/Hero14.svg);
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
     background-repeat: no-repeat;
     background-size: cover;
-    width: 600px;
-    height: 760px;
+    width: 50%;
+    height: 735px;
     margin-top:60px;
-    margin-left: 300px;
+    margin-left: 100px;
+    margin-bottom:20px;
+    
 }
 
 .imagem-cadastro h1 {
-  width: 700px;
+  width: 40px;
   margin: 50px;
   font-size: 0px;
 }
@@ -44,7 +45,7 @@ body {
 
 .tab-container {
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   width: 40%;
   margin-top: 50px;
   border-radius: 5px;

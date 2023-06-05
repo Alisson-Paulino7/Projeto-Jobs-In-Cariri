@@ -2,13 +2,27 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
-
+ul{
+    background: #f1f1f1;
+    height: 50;
+}
+header{
+    background-color: #f1f1f1;
+    padding-top: 5px;
+}
+html{
+    background-image:url(../imagens/fundologin.svg);
+    background-size: cover;
+}
 .dropdown {
     position: relative;
     display: inline-block;
 }
-
+.op{
+    border-radius: 20px;
+}
 .dropdown-btn {
 
 
@@ -52,6 +66,7 @@
 
 a {
     color: white;
+    
 }
 
 .show {
@@ -62,16 +77,20 @@ section {
     display: flex;
     justify-content: space-between;
     margin: 40px;
+    
 }
 
 form {
     display: flex;
     align-items: center;
-    width: 40%
+    width: 40%;
+    margin-right: 110px;
 }
 
 form select {
-
+    border-radius: 10px;
+    box-shadow: 5px 5px black;
+    
     margin-right: 60px;
 }
 
@@ -83,7 +102,7 @@ form h1 {
 
 select {
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 15px;
     border: none;
     border-radius: 20px;
     width: 200px;
@@ -93,36 +112,45 @@ select {
     outline: none;
 
 }
-
-
-
+option.item{
+    border-radius: 20px;
+    background-color: #000000;
+}
+#styleselect{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
 select#cidadeFiltro {
-    background: linear-gradient(to right, orange, yellow);
+    background: linear-gradient(to left,  #ff6600);
     box-shadow: 3px 3px black;
+    
 }
 
 select#profissaoFiltro {
-    background: linear-gradient(to right, orange, yellow);
+    background: linear-gradient(to left,  #ff6600);
     box-shadow: 3px 3px black;
 }
 
 input.busque {
-    background: linear-gradient(to right, orange, yellow);
+    background: linear-gradient(to left,  #ff6600);
+    border-radius: 10px;
 }
 
 option {
     border: 1px solid;
-    border-radius: 20px;
+    border-radius: 50px;
     background-color: #ffffff;
     font-size: 16px;
     padding: 10px;
+    border-radius: 20px;
 }
 
 input[type=submit] {
-    background: linear-gradient(to right, orange, yellow);
+    background: linear-gradient(to left,  #ff6600, #ffe600);
     box-shadow: 3px 3px black;
-    width: 200px;
-    border-radius: 20px;
+    width: 20%;
+    border-radius: 10px;
     font-size: 20px;
     border: none;
     padding: 5px;
@@ -133,12 +161,11 @@ input[type=submit] {
 .container {
     display: flex;
     justify-content: space-around;
-    border: 0px solid;
-    box-shadow: 3px 3px rgb(168, 168, 168);
+    border: 0px solid white;
+    box-shadow: 3px 3px rgb(53, 53, 53);
     width: 580px;
     flex-direction: row-reverse;
-    background: rgb(247, 247, 247);
-
+    background: rgb(0, 0,0,0.3);
     align-items: center;
     padding: 40px;
     border-radius: 20px;
@@ -168,7 +195,7 @@ input[type=submit] {
 .lista-profissionais {
     display: flex;
     flex-wrap: wrap;
-    width: 900px;
+    width: 40%;
     
 }
 
@@ -178,7 +205,7 @@ p.nomep {
     box-shadow: 2px 2px rgb(168, 168, 168);
     background-color: white;
     border-radius: 10px;
-    width: 200px;
+    width: 300px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 5px;
@@ -193,7 +220,7 @@ p.profp {
     box-shadow: 2px 2px rgb(168, 168, 168);
     background-color: white;
     border-radius: 10px;
-    width: 200px;
+    width: 300px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -204,19 +231,21 @@ p.cidp {
     box-shadow: 2px 2px rgb(168, 168, 168);
     background-color: white;
     border-radius: 10px;
-    width: 200px;
+    width: 300px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 5px;
 }
 
 .profissional {
-    background-color: white;
-    border: 1px solid rgb(211, 211, 211);
-    box-shadow: 3px 3px rgb(168, 168, 168);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.274);
+    border: 0px solid rgb(211, 211, 211);
+    box-shadow: 3px 3px rgb(88, 88, 88);
     border-radius: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  
 }

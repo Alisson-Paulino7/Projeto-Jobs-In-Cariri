@@ -10,30 +10,37 @@
 </head>
 <body>
 <header>
-    <ul>
-        <a href="../authenticated/home.php"> <li>
-            <img src="..\imagens\Logo.svg" alt="" class="logo"> JOBS IN CARIRI
-        </li></a> 
+<ul>
+      <a href="../authenticated/home.php">
         <li>
-            Candidatos
+          <img src="..\imagens\Logo.svg" alt="" class="logo"> JOBS IN CARIRI
         </li>
-        <a href="../authenticated/cadastroVagas.php"> <li>Empresas</li></a>
-        <li>Ultimas vagas</li>
-        <div class="dropdown">
-  <li class="dropdown-btn">Perfil</li>
-  <ul class="dropdown-menu">
-  <a href="#"><li>Editar perfil</li></a>
-  <a href="#"> <li>Ranking</li></a>
-  <a href="../authenticated/editarPerfil.php"> <li>Profissão</li></a>
-  <a href="#"><li>Contratos</li></a>
-  <a href="#"> <li>Chat</li></a>
-  <a href="#"> <li>Pagamentos</li></a>
-  <a href="..\login.php"><li>Sair</li></a>
-  </ul>
-</div>
+      </a>
+      <a href="./ranking.php">
+        <li>Ranking</li>
+      </a>
+      <a href="../authenticated/cadastroVagas.php">
+        <li>Empresas</li>
+      </a>
+      <a href="../authenticated/editarPerfil.php">
+        <li>Profissão</li>
+      </a>
 
-
-    </ul>
+      <div class="dropdown">
+        <li class="dropdown-btn">Perfil</li>
+        <ul class="dropdown-menu">
+          <a href="./perfil.php">
+            <li>Editar perfil</li>
+          </a>
+          <a href="./pagamento.php">
+            <li>Pagamentos</li>
+          </a>
+          <a href="..\login.php">
+            <li>Sair</li>
+          </a>
+        </ul>
+      </div>
+</ul>
 </header>
 <main>
     <h1>Publique sua vaga</h1>

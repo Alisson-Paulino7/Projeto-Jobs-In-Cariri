@@ -6,10 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/ranking.css">
+    <link rel="stylesheet" href="../css/home.css">
     <title>Perfil</title>
 </head>
 <body>
-    <h1>Editar perfil</h1>
+<header>
+<ul>
+      <a href="../authenticated/home.php">
+        <li>
+          <img src="..\imagens\Logo.svg" alt="" class="logo"> JOBS IN CARIRI
+        </li>
+      </a>
+      <a href="./ranking.php">
+        <li>Ranking</li>
+      </a>
+      <a href="../authenticated/cadastroVagas.php">
+        <li>Empresas</li>
+      </a>
+      <a href="../authenticated/editarPerfil.php">
+        <li>Profissão</li>
+      </a>
+
+      <div class="dropdown">
+        <li class="dropdown-btn">Perfil</li>
+        <ul class="dropdown-menu">
+          <a href="./perfil.php">
+            <li>Editar perfil</li>
+          </a>
+          <a href="./pagamento.php">
+            <li>Pagamentos</li>
+          </a>
+          <a href="..\login.php">
+            <li>Sair</li>
+          </a>
+        </ul>
+      </div>
+</ul>
+</header>
+</body>
+</html>
+<body>
+    
     <?php 
 session_start();
 
@@ -30,27 +68,36 @@ if (!isset($_SESSION["user_id"])) {
 
 $id_do_usuario = $_SESSION["user_id"];
 
+echo $id_do_usuario;
+
 $sql = "SELECT * FROM `cadastro` WHERE id = $id_do_usuario";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo "<form method='POST' action='' enctype='multipart/form-data'>
+      $nome = $row['nome'];
+      $sobrenome = $row['sobrenome'];
+      $email = $row['email'];
+      $endereco = $row['endereco'];
+      $cidade = $row['cidade'];
+      $celular = $row['celular'];
+        echo "<h1>Editar perfil</h1>
+        <form method='POST' action='' enctype='multipart/form-data'>
             <div class='container-img'>
             <div class='estilo'>
             <div class='alteraft'>
             <img src='img/{$row['foto']}' style='border-radius: 10px;' id='preview-img'>
             <input type='file' name='foto' class='custom-file-input' id='foto' onchange='previewImage();'></div>
             <div class='inf'>
-            <p>Nome</p>
-            <p>email</p>
-            <p>senha</p>
-            <p>cep</p>
-            <p>telefone</p>
+            <p>Nome: $nome $sobrenome</p>
+            <p>E-mail: $email</p>
+            <p>Endereco: $endereco</p>
+            <p>Cidade: $cidade</p>
+            <p>Contato: $celular</p>
             </div>
             </div>
             </div>
-            <input type='submit' value='Atualizar cadastro' name='atualizar_cadastro'>
+            <input type='submit' value='Atualizar cadastro' name='atualizar_cadastro' style=' font-size: 20px;color:black;box-shadow:15px 15px rgba(0,0,0,0.5)'>
         </form>";
     }
 }
@@ -96,8 +143,33 @@ function previewImage() {
 </script>
 
 
+<script>
+  const dropdownBtn = document.querySelector('.dropdown-btn');
+const dropdownMenu = document.querySelector('.dropdown-menu');
+
+dropdownBtn.addEventListener('click', () => {
+  dropdownMenu.classList.toggle('show');
+});
+
+window.addEventListener('click', (event) => {
+  if (!event.target.matches('.dropdown-btn') && !event.target.matches('.dropdown-menu')) {
+    dropdownMenu.classList.remove('show');
+  }
+});
+
+
+</script>
 
 <style>
+    header{
+        background-color: white;
+        
+    margin-bottom: 50px;
+
+    }
+    h1{
+      background: rgba(0,0,0,0.3);
+    }
     .alteraft{
         display:column;
         
@@ -107,22 +179,29 @@ function previewImage() {
      margin-right: 80px;
     }
         .inf p{
+            font-size: 20px;
             color:black;
             border: 0px solid;
-            background: whitesmoke;
             border-radius: 5px;
-            box-shadow: 3px 3px grey;
-            margin-bottom: 10px;
+            margin-top: 20px;
             margin:20px;
-            padding: 6px;
+            padding: 10px;
             width: 500px;
+            background: whitesmoke;
         }
     .inf{
-        margin-top: -50px;
-        border: 1px solid rgba(0,0,0,0.1);
+        display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        margin-top: -1px;
+        margin-left: -30px;
+        border: 0px solid  #ff6600;
         border-radius: 20px;
         padding: 10px;
-        
+        background: rgba(#fff,#fff,#fff,0.5);
+        padding-bottom: 20px;
+        padding-right: 50px;
+        padding-left: 30px;
     }
     .nome{
        text-align: center;
@@ -131,11 +210,11 @@ function previewImage() {
         font-weight: 400;
     }
     .estilo{
-        border: 0px solid;
+        border: 1px solid #ffe600 ;
         border-radius: 20px;
         background: rgba(0,0,0,0.3);
-        padding: 10px;
-        padding-right: 50px;
+        
+       
         padding-left: 30px;
         display:flex;
         justify-content: center;
@@ -158,8 +237,11 @@ function previewImage() {
     height:30px;}
 
     input[type='submit']{
-    height:40px;
+    height:60px;
     width:250px;
+    background: linear-gradient(to left,  #ff6600, #ffe600);
+    margin-top: 80px;
+    
 }
     .container-inputs{
     display:flex;
@@ -173,7 +255,7 @@ function previewImage() {
         flex-direction:column;
         align-items:left;
         justify-content:left;
-
+        
     }
 
     .container-img img{
@@ -191,10 +273,10 @@ function previewImage() {
   
     .custom-file-input {
   color: #033f63;
-  width:190px;
+  width:240px;
   height: 100px;
-  margin-top: 30px;
-  margin-right: 50px;
+  margin-left: -17px;
+  font-weight: bold;
   
 }
 .custom-file-input::-webkit-file-upload-button {
@@ -204,16 +286,17 @@ function previewImage() {
   content: 'Adicione uma foto ao perfil';
   display: inline-block;
   border:none;
-  background:white;
-  border: 1px solid #999;
-  border-radius: 5px;
+  background: whitesmoke;
+  border: 1px solid grey;
+  border-radius: 10px;
   padding: 15px;
+  padding-right: 18px;
   outline: none;
-  color:#033f63;
+  color:black;
   white-space: nowrap;
   cursor: pointer;
-  
   font-size: 15px;
+  
 }
 .custom-file-input:hover::before {
   border-color: black;
@@ -227,7 +310,7 @@ function previewImage() {
 
 body {
     font-family:Roboto;
-  padding: 20px;
+  padding: 0px;
   background-image:url(../imagens/fundologin.svg);
   background-size:cover;
 background-repeat: no-repeat;
@@ -242,6 +325,7 @@ body h1{
         flex-direction: column;
         align-items: left;
         margin-bottom: 20px;
+       
     }
 
     .container-img img {

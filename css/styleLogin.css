@@ -48,7 +48,7 @@ form input {
 
 form input[type="submit"] {
     color: #0059ff;
-    background-color: #ff6600;
+    background: linear-gradient(to left,  #ff6600, #ffe600);
     color: white;
     font-size: 16px;
     font-weight: 500;

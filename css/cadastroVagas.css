@@ -37,15 +37,20 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-image: url(../imagens/fundologin.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 form{display: flex;
 flex-direction: column;
 align-items: center;
-background-color: #033F63;
+background: rgb(0, 0,0,0.3);
 width: 550px;
 border-radius: 10px;
-padding: 20px;}
+padding: 20px;
+margin-bottom: 40px;
+}
 
 form label{color: white;
 align-items: start;
@@ -53,7 +58,7 @@ margin-bottom: 5px;}
 
 form input{
     width: 400px;
-    height: 30px;
+    height: 50px;
     outline: none;
     border: none;
     border-radius: 10px;
@@ -62,12 +67,23 @@ form input{
 }
 
 main h1{
-    color: #033F63;
+    color: #ffffff;
     margin: 10px;
+    background: rgb(0, 0,0,0.3);
+    box-shadow: 3px  3px grey;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-top: 20px;
 }
 main p{
-    color: #033e6385;
+    color: #d3d3d3;
     margin: 10px;
+    background: rgb(0, 0,0,0.3);
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 .container{display: flex;
@@ -76,10 +92,12 @@ align-items: start;
 margin:10px;}
 
 input[type=submit]{
-    width: 200px;
-    background-color: #FFA500;
-    color: white;
+    width: 250px;
+    height: 60px;
+    background: linear-gradient(to left,  #ff6600, #ffe600);
+    color: rgb(0, 0, 0);
     font-weight: 600;
-    font-size: 15px;
+    font-size: 20px;
+    margin-top: 10px;
 }
 

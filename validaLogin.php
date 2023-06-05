@@ -1,60 +1,127 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "jobs";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Verifica se os dados foram preenchidos
+    if (isset($_POST['email']) && isset($_POST['senha'])) {
 
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+
+class Conexao {
+
+    private $conexao;
+
+    private $host = 'localhost';
+    private $dbname = 'jobs';
+    private $usuario = 'root';
+    private $senha = '';
+    
+    public function conectar() {
+        try {
+            $conexao = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->usuario, $this->senha);
+            $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $conexao;
+        } catch (PDOException $e) {
+            echo 'Erro na conexão com o banco de dados: ' . $e->getMessage();
+        }
+    }
+    public function fecharConexao() {
+        $this->conexao = null;
+    }
 }
 
-session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+class login {
+    private $conexao;
     
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
-
-    $sql = "SELECT * FROM cadastro WHERE email = ? AND senha = ?";
-    
-    $stmt = $conn->prepare($sql);
-
-    if ($stmt === false) {
-        die("Falha na preparação da declaração: " . $conn->error);
+    public function __construct($conexao) {
+        $this->conexao = $conexao;
     }
 
-    $stmt->bind_param("ss", $email, $senha);
 
-    if ($stmt->execute()) {
+    public function logar($email, $senha) {
+        $sql = "SELECT * FROM cadastro WHERE email = :email AND senha = :senha";
         
-        $result = $stmt->get_result();
-        
-        if ($result->num_rows > 0) {
-            
-            $row = $result->fetch_assoc();
-            
-            $_SESSION['user_id'] = $row['id']; 
+        $stmt = $this->conexao->prepare($sql);
 
-            header("Location: authenticated/home.php");
-            exit();
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':senha', $senha);
+        
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            echo"<div class='feito'>
+            <h1>Login efetuado com sucesso!</h1>
+            </div>";
+            echo "<div class='container'>
+            <img src='./imagens/sucesslogin.png' alt='' class='centered-image'></div>";
+            echo "<script>setTimeout(function()
+            {window.location.href='authenticated/home.php';}, 1500);
+            </script>";
+
             
         } else {
-          
-            echo "Usuário ou senha incorretos!";
-            sleep(3); 
-            header("Location: login.php");
-            exit();
+            echo "<div class='feito'>
+            <h1>Usuário ou senha incorretos!</h1>
+            </div>";
+            echo "<div class='container'>
+            <img src='./imagens/errorlogin.png' alt='' class='centered-image'></div>";
+            echo "<script>setTimeout(function()
+            {window.location.href='login.php';}, 1500);
+            </script>";
         }
         
-    } else {
-        echo "Erro ao buscar no banco de dados: " . $stmt->error;
     }
-
-    $stmt->close();
 }
 
-$conn->close();
+$conexao = new Conexao();
+
+$logando = new login($conexao->conectar());
+
+$logando->logar($email, $senha);
+
+$conexao->fecharConexao();
+
+
+    } else {
+        echo 'Por favor, preencha todos os campos do formulário.';
+    } 
+} else {
+echo 'O formulário não foi enviado.';
+}
+
+
 ?>
+
+<style>
+.feito {
+    display: flex;
+    justify-content: center;
+    color: #457b9d;
+    list-style: none;
+    font-family: Roboto;
+    padding-top: 100px;
+
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.centered-image {
+    width: 400px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+body {
+    background: #edede9;
+}
+
+
+</style>

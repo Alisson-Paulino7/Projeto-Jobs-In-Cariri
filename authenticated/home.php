@@ -11,30 +11,37 @@
 </head>
 <body>
 <header>
-    <ul>
-        <a href="../authenticated/home.php"> <li>
-            <img src="..\imagens\Logo.svg" alt="" class="logo"> JOBS IN CARIRI
-        </li></a> 
+<ul>
+      <a href="../authenticated/home.php">
         <li>
-            Candidatos
+          <img src="..\imagens\Logo.svg" alt="" class="logo"> JOBS IN CARIRI
         </li>
-        <a href="../authenticated/cadastroVagas.php"> <li>Empresas</li></a>
-        <li>Ultimas vagas</li>
-        <div class="dropdown">
-  <li class="dropdown-btn">Perfil</li>
-  <ul class="dropdown-menu">
-  <a href="../authenticated/perfil.php"><li>Editar perfil</li></a>
-  <a href="../authenticated/ranking.php"> <li>Ranking</li></a>
-  <a href="../authenticated/editarPerfil.php"> <li>Profissão</li></a>
-  <a href="#"><li>Contratos</li></a>
-  <a href="#"> <li>Chat</li></a>
-  <a href="../authenticated/pagamento.php"> <li>Pagamentos</li></a>
-  <a href="..\login.php"><li>Sair</li></a>
-  </ul>
-</div>
+      </a>
+      <a href="./ranking.php">
+        <li>Ranking</li>
+      </a>
+      <a href="../authenticated/cadastroVagas.php">
+        <li>Empresas</li>
+      </a>
+      <a href="../authenticated/editarPerfil.php">
+        <li>Profissão</li>
+      </a>
 
-
-    </ul>
+      <div class="dropdown">
+        <li class="dropdown-btn">Perfil</li>
+        <ul class="dropdown-menu">
+          <a href="./perfil.php">
+            <li>Editar perfil</li>
+          </a>
+          <a href="./pagamento.php">
+            <li>Pagamentos</li>
+          </a>
+          <a href="..\login.php">
+            <li>Sair</li>
+          </a>
+        </ul>
+      </div>
+</ul>
 </header>
 
 <main>
@@ -137,7 +144,7 @@ if ($result->num_rows > 0) {
         echo "<form method='POST' action='vinculaUsuarioPagamento.php'>";
         echo "<input type='hidden' name='id_cadastro' value='$idUsuario'>";
         echo "<input type='hidden' name='id_vaga' value='" . $row['id'] . "'>";
-        echo "<input type='submit' value='Candidatar' style='background:transparent; color:#033F63;border:none; cursor:pointer; font-size:15px'>";
+        echo "<input type='submit' value='Candidatar' style='background:transparent; font-weight:bold;color:black;border:none; cursor:pointer; font-size:15px'>";
         echo "</form>";
         echo "</div>";
         echo "</div>";
@@ -232,12 +239,10 @@ a{color:white;}
 }
 
 
-body{
-  
-}
+
     main{display:flex;
         justify-content:space-around;
-        background-image: url("../imagens/img.jpeg");
+        background-image: url("../imagens/fundologin.svg");
 			background-repeat: no-repeat;
 			background-size: cover;
       height:100vh;
@@ -257,20 +262,22 @@ body{
         align-items:center;
         flex-direction:column;
         justify-content:center;
-        text-align:center;
+        text-align:left;
         width:300px;
-        height:80px;
+        height:100px;
         margin: auto;
         border-top-left-radius:10px;
         border-top-right-radius:10px;
-        background:white;
+        background:rgba(0,0,0,0.4);
+        color: white;
 
     }
 
     .candidatar{
-        background:#FFA500;
+        background: linear-gradient(to left,  #ff6600, #ffe600);
+        box-shadow: 3px 3px black;
         width:300px;
-        height:40px;
+        height:50px;
         display:flex;
         justify-content:center;
         align-items:center;
@@ -278,13 +285,21 @@ body{
         border-bottom-left-radius:10px;
         margin:auto;
         margin-bottom:20px;
-        color: #033F63;
+        color: black;
+        font-weight: bold;
         
     }
 
     h1{text-align:center;
-    color:white;
+    color:black;
     margin:10px; 
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 5px 5px grey;
+    border: 0px solid;
+    border-radius: 10px;
+    padding:10px;
+
  }
 
     .not-jobs{
