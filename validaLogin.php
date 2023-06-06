@@ -1,18 +1,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 <?php
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Verifica se os dados foram preenchidos
-    if (isset($_POST['email']) && isset($_POST['senha'])) {
-
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-
 class Conexao {
-
     private $conexao;
-
     private $host = 'localhost';
     private $dbname = 'jobs';
     private $usuario = 'root';
@@ -27,13 +17,14 @@ class Conexao {
             echo 'Erro na conexão com o banco de dados: ' . $e->getMessage();
         }
     }
+    
     public function fecharConexao() {
         $this->conexao = null;
     }
 }
 
 
-class login {
+class Login {
     private $conexao;
     
     public function __construct($conexao) {
@@ -53,6 +44,9 @@ class login {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($result) {
+            session_start();
+            $_SESSION['user_id'] = $result['id'];
+
             echo"<div class='feito'>
             <h1>Login efetuado com sucesso!</h1>
             </div>";
@@ -77,20 +71,26 @@ class login {
     }
 }
 
-$conexao = new Conexao();
 
-$logando = new login($conexao->conectar());
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Verifica se os dados foram preenchidos
+    if (isset($_POST['email']) && isset($_POST['senha'])) {
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
 
-$logando->logar($email, $senha);
+        $conexao = new Conexao();
+        #$logando = new login($conexao->conectar());
+        $db = $conexao->conectar();
 
-$conexao->fecharConexao();
+        $logando = new Login($db);
+        $logando->logar($email, $senha);
 
-
+        $conexao->fecharConexao();
     } else {
         echo 'Por favor, preencha todos os campos do formulário.';
-    } 
+    }
 } else {
-echo 'O formulário não foi enviado.';
+    echo 'O formulário não foi enviado.';
 }
 
 

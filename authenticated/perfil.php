@@ -68,58 +68,119 @@ if (!isset($_SESSION["user_id"])) {
 
 $id_do_usuario = $_SESSION["user_id"];
 
-echo $id_do_usuario;
-
-$sql = "SELECT * FROM `cadastro` WHERE id = $id_do_usuario";
+$sql = "SELECT nome, sobrenome, email, endereco, cidade, celular, foto FROM `cadastro` WHERE id = $id_do_usuario";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-      $nome = $row['nome'];
-      $sobrenome = $row['sobrenome'];
-      $email = $row['email'];
-      $endereco = $row['endereco'];
-      $cidade = $row['cidade'];
-      $celular = $row['celular'];
+    while ($row = $result->fetch_assoc()) {
+        $nome = $row['nome'];
+        $sobrenome = $row['sobrenome'];
+        $email = $row['email'];
+        $endereco = $row['endereco'];
+        $cidade = $row['cidade'];
+        $celular = $row['celular'];
+
         echo "<h1>Editar perfil</h1>
-        <form method='POST' action='' enctype='multipart/form-data'>
-            <div class='container-img'>
-            <div class='estilo'>
-            <div class='alteraft'>
-            <img src='img/{$row['foto']}' style='border-radius: 10px;' id='preview-img'>
-            <input type='file' name='foto' class='custom-file-input' id='foto' onchange='previewImage();'></div>
-            <div class='inf'>
-            <p>Nome: $nome $sobrenome</p>
-            <p>E-mail: $email</p>
-            <p>Endereco: $endereco</p>
-            <p>Cidade: $cidade</p>
-            <p>Contato: $celular</p>
-            </div>
-            </div>
-            </div>
-            <input type='submit' value='Atualizar cadastro' name='atualizar_cadastro' style=' font-size: 20px;color:black;box-shadow:15px 15px rgba(0,0,0,0.5)'>
-        </form>";
-    }
-}
+            <form method='POST' action='' enctype='multipart/form-data'>
+                <div class='container-img'>
+                    <div class='estilo'>
+                        <div class='alteraft'>
+                            <img src='img/{$row['foto']}' style='border-radius: 10px;' id='preview-img'>
+                            <input type='file' name='foto' class='custom-file-input' id='foto' onchange='previewImage();'>
+                        </div>
+                        <div class='inf'>
+                            <label for='nome'>Nome: $nome </label>
+                            <input type='text' placeholder='Digite o novo nome' name='nome'>
+                            <label for='sobrenome'>Sobrenome: $sobrenome</label>
+                            <input type='text' placeholder='Digite o novo sobrenome' name='sobrenome'>
+                            <label for='email'>Email: $email</label>
+                            <input type='email' placeholder='Digite seu email' name='email'>
+                            <label for='endereco'>Endereço: $endereco</label>
+                            <input type='text' placeholder='Digite endereço' name='endereco'>
+                            <label for='cidade'>Cidade: $cidade</label>
+                            <input type='text' placeholder='Digite o nome da sua cidade' name='cidade'>
+                            <label for='celular'>Telefone: $celular</label>
+                            <input type='tel' placeholder='Digite o numero de telefone' name='celular'>
+                        </div>
+                    </div>
+                </div>
+                <input type='submit' value='Atualizar Foto' name='atualizar_foto' style='font-size: 20px; color:black; box-shadow:15px 15px rgba(0,0,0,0.5)'>
+                <input type='submit' value='Atualizar cadastro' name='atualizar_cadastro' style='font-size: 20px; color:black; box-shadow:15px 15px rgba(0,0,0,0.5)'>
+            </form>";
 
+        if (isset($_POST['atualizar_cadastro'])) {
+            if (isset($_POST['nome']) && isset($_POST['sobrenome']) && isset($_POST['email']) && isset($_POST['endereco']) && isset($_POST['cidade']) && isset($_POST['celular'])) {
+                $novoNome = $_POST['nome'];
+                $novosobrenome = $_POST['sobrenome'];
+                $novoEmail = $_POST['email'];
+                $novoEndereco = $_POST['endereco'];
+                $novaCidade = $_POST['cidade'];
+                $novoCelular = $_POST['celular'];
 
-if (isset($_POST['atualizar_cadastro'])) {
-    if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] === UPLOAD_ERR_OK) {
-        $foto = $_FILES["foto"]["tmp_name"];
-        $target_dir = "img/";
-        $new_file_name = uniqid() . "_" . $_FILES["foto"]["name"];
-        $target_file = $target_dir . $new_file_name;
-        move_uploaded_file($foto, $target_file);
-        $sql = "UPDATE cadastro SET foto = '$new_file_name' WHERE id = $id_do_usuario";
-        if ($conn->query($sql) === TRUE) {
-            echo "Cadastro atualizado com sucesso!";
-            header("Location: home.php");
-            exit;
-        } else {
-            echo "Erro ao atualizar cadastro: " . $conn->error;
+                if (!empty($novoNome) && !empty($novosobrenome) && !empty($novoEmail)  && !empty($novoEndereco) && !empty($novaCidade) && !empty($novoCelular)) {
+                  $sql = "UPDATE cadastro SET nome = '$novoNome', sobrenome  = '$novosobrenome', email = '$novoEmail', endereco = '$novoEndereco', cidade = '$novaCidade', celular = '$novoCelular' WHERE id = $id_do_usuario";
+      
+
+                if ($conn->query($sql) === TRUE) {
+                    echo "Cadastro atualizado com sucesso.";
+                    header("Location: home.php");
+                } else {
+                    echo "Erro ao atualizar cadastro: " . $conn->error;
+                }
+            } else {
+                echo "Erro: Algum campo obrigatório não foi preenchido.";
+            }
         }
     }
+  }
 }
+
+
+
+
+if (isset($_POST['atualizar_foto'])) {
+  // Verifica se o botão 'Atualizar Cadastro' foi acionado
+
+  if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] === UPLOAD_ERR_OK) {
+      // Verifica se um arquivo de foto foi enviado e se não ocorreu nenhum erro durante o upload
+
+      $foto = $_FILES["foto"]["tmp_name"];
+      // Armazena o caminho temporário do arquivo de foto
+
+      $target_dir = "img/";
+      // Diretório de destino para onde o arquivo de foto será movido
+
+      $new_file_name = uniqid() . "_" . $_FILES["foto"]["name"];
+      // Gera um nome único para o arquivo de foto usando uniqid() e o nome original do arquivo
+
+      $target_file = $target_dir . $new_file_name;
+      // Caminho completo para o novo arquivo de foto
+
+      move_uploaded_file($foto, $target_file);
+      // Move o arquivo de foto do diretório temporário para o diretório de destino
+
+      $sql = "UPDATE cadastro SET foto = '$new_file_name' WHERE id = $id_do_usuario";
+      // Cria a consulta SQL para atualizar o campo de foto na tabela de cadastro
+
+      if ($conn->query($sql) === TRUE) {
+          // Executa a consulta SQL e verifica se a atualização foi bem-sucedida
+
+          echo "Cadastro atualizado com sucesso!";
+          // Exibe uma mensagem de sucesso
+
+          header("Location: home.php");
+          // Redireciona o usuário para a página home.php
+
+          exit;
+      } else {
+          echo "Erro ao atualizar cadastro: " . $conn->error;
+          // Exibe uma mensagem de erro, caso ocorra algum problema na atualização do cadastro
+      }
+  }
+}
+
+
+
 
 $conn->close();
 ?>
@@ -159,7 +220,7 @@ window.addEventListener('click', (event) => {
 
 
 </script>
-
+*/
 <style>
     header{
         background-color: white;
@@ -178,13 +239,22 @@ window.addEventListener('click', (event) => {
      padding: 18px;
      margin-right: 80px;
     }
-        .inf p{
+        .inf label{
+            font-size: 20px;
+            color:white;
+            border: 0px solid;
+            border-radius: 5px;
+            margin-left: 20px;
+            width: 500px;
+            background: rgba(#fff, #fff, #fff, 0.5);
+        }
+        .inf input{
             font-size: 20px;
             color:black;
             border: 0px solid;
             border-radius: 5px;
             margin-top: 20px;
-            margin:20px;
+            margin: 20px;
             padding: 10px;
             width: 500px;
             background: whitesmoke;
