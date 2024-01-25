@@ -1,3 +1,3 @@
-*.kicad_pcb linguist-detectable=true
-*.sch linguist-detectable=true
-tools/export_bom.py linguist-detectable=false
+$ cat .gitattributes
+*.html linguist-language=PHP
+*.css linguist-language=PHP
