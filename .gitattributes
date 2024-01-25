@@ -1,3 +1,1 @@
-$ cat .gitattributes
-*.html linguist-language=PHP
-*.css linguist-language=PHP
+
